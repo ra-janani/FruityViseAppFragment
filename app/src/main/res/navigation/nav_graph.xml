@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FruitsFragment">
+
+    <fragment
+        android:id="@+id/FruitsFragment"
+        android:name="com.example.fruityviseapp.ui.fragments.home.FruitsFragment"
+        android:label="@string/fruits_fragment_label"
+        tools:layout="@layout/fragment_fruits">
+
+        <action
+            android:id="@+id/action_FruitsFragment_to_DetailsFragment"
+            app:destination="@id/DetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/DetailsFragment"
+        android:name="com.example.fruityviseapp.ui.fragments.detail_page.DetailsFragment"
+        android:label="@string/details_fragment_label"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="currentItem"
+            app:argType="com.example.fruityviseapp.data.FruityViceItemModel" />
+    </fragment>
+</navigation>
