@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fruityviseapp.data.FruityViceItemModel
 import com.example.fruityviseapp.R
+import com.example.fruityviseapp.data.FruityViceItemModel
 import com.example.fruityviseapp.databinding.FruitsItemsBinding
 
 class FruitAdapter(private val listener: ItemClickListener) :

@@ -1,17 +1,15 @@
 package com.example.fruityviseapp.ui.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.fruityviseapp.data.FruityViceItemModel
 import com.example.fruityviseapp.databinding.FragmentFruitsBinding
 import com.example.fruityviseapp.ui.FruitsViewModel
-import com.example.fruityviseapp.ui.fragments.detail_page.DetailsFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,8 +37,9 @@ class FruitsFragment : Fragment() , FruitAdapter.ItemClickListener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fruitsViewModel.apply {
-            getFruitsData()
-            fruits.observe(viewLifecycleOwner){
+            if(!fruitsLiveData.isInitialized)
+                getFruitsData()
+            fruitsLiveData.observe(viewLifecycleOwner){
                 it?.let{
                     setupUI(it)
                 }
@@ -51,7 +50,7 @@ class FruitsFragment : Fragment() , FruitAdapter.ItemClickListener  {
     private fun setupUI(fruits: ArrayList<FruityViceItemModel>) {
         binding.rvFruits.adapter = fruitsAdapter
         fruitsAdapter.submitList(fruits)
-
+        //fruitsAdapter.stateRestorationPolicy= RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
     }
 
     override fun onDestroyView() {
